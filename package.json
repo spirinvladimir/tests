@@ -1,0 +1,20 @@
+{
+  "name": "tests",
+  "version": "0.0.0",
+  "description": "TDD",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --require should --reporter spec test/index.js"
+  },
+  "repository": "",
+  "keywords": [
+    "test",
+    "mocha",
+    "TDD"
+  ],
+  "author": "Spirin Vladimir",
+  "license": "BSD",
+  "devDependencies": {
+    "should": "~1.2.2"
+  }
+}
