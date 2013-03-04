@@ -7,6 +7,7 @@ describe('test 1:', function(){
 		}, 1000);
 		
 		it('async test', function(done){
+			this.timeout(1001);
 			ee.on('ready', function() {
 				done();
 			});
