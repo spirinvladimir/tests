@@ -4,7 +4,8 @@
   "description": "TDD",
   "main": "index.js",
   "scripts": {
-    "test": "mocha -b --timeout 2001 --require should --reporter spec --recursive"
+    "test": "mocha -b --require should --reporter spec --recursive",
+    "test2md" : "mocha --recursive --require should --reporter markdown >README.md"
   },
   "repository": "",
   "keywords": [
