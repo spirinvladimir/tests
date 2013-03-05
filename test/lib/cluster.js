@@ -1,4 +1,4 @@
-//var cluster = require('../lib/cluster.js');
+//var cluster = process.env.COVERAGE ? require('../lib-cov/cluster.js') : require('../lib/cluster.js');
 //var assert = require("assert");
 
 //describe('test 1:', function(){

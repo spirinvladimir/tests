@@ -1,6 +1,12 @@
-var sum = require('../index.js').sum;
-var x2 = require('../index.js').x2;
-var assert = require("assert");
+var app = process.env.COVERAGE ? require('../../lib-cov/app.js') : require('../../lib/app.js'),
+	sum = app.sum;
+	x2 = app.x2,
+	x3 = app.x3,
+	hw = app.hw,
+	k = app.k,
+	sum_string = app.sum_string,
+	t = app.types,
+	assert = require("assert");
 
 describe('test 1:', function(){
   describe('Check sum().', function(){
@@ -46,7 +52,6 @@ describe('test 5:', function(){
 });
 
 describe('test 6:', function(){
-  var x3 = require('../index.js').x3;
   describe('Check x3().', function(){
     it('* 3', function(){
       var i;
@@ -60,7 +65,7 @@ describe('test 6:', function(){
 describe('test 7:', function(){
   describe('Check x3().', function(){
     it('It will have property hw and hw - \'hello world\':', function() {
-		assert.equal('hello world', require('../index.js').hw);
+		assert.equal('hello world', hw);
     });
   });
 });
@@ -68,9 +73,9 @@ describe('test 7:', function(){
 describe('test 8:', function(){
   describe('Check keys.', function(){
     it('It will have k with keys: a, b, c', function() {
-		assert.equal('is a', require('../index.js').k.a);
-		assert.equal('is b', require('../index.js').k.c);
-		assert.equal('is c', require('../index.js').k.b);
+		assert.equal('is a', k.a);
+		assert.equal('is b', k.c);
+		assert.equal('is c', k.b);
     });
   });
 });
@@ -78,15 +83,14 @@ describe('test 8:', function(){
 describe('test 9:', function(){
   describe('Check sum strings.', function(){
     it('It will sum 2 strings.', function() {
-		assert.equal('hello world', require('../index.js').sum_string('hello', 'world'));
+		assert.equal('hello world', sum_string('hello', 'world'));
     });
   });
 });
 
 describe('test 10:', function(){
-  describe('JavaScript has types: "number", "array", "object", "function".', function(){
+  describe('JavaScript has types: "number", "object", "function".', function(){
     it('...', function() {
-		var t = require('../index.js').types;
 		assert.equal('object', typeof t.b);
 		assert.equal('function', typeof t.c);
 		assert.equal('number', typeof t.d);

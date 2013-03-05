@@ -4,8 +4,12 @@
   "description": "TDD",
   "main": "index.js",
   "scripts": {
-    "test": "mocha -b --require should --reporter spec --recursive",
-    "test2md" : "mocha --recursive --require should --reporter markdown >README.md"
+    "test": "mocha --recursive -r should -R spec",
+    "test2md" : "mocha --recursive -r should -R markdown >README.md",
+    "coverage" : "COVERAGE=1 && npm run-script clear && npm run-script jscov && npm run-script test2cov",
+    "test2cov" : "mocha --recursive -r should -R html-cov >coverage.html",
+    "clear" : "rm -rf lib-cov coverage.html",
+    "jscov" : "jscoverage lib lib-cov"
   },
   "repository": "",
   "keywords": [
