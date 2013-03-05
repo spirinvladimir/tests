@@ -1,6 +1,5 @@
 # TOC
    - [test 1:](#test-1)
-     - [Local EventEmitter.](#test-1-local-eventemitter)
      - [Check sum().](#test-1-check-sum)
    - [test 2:](#test-2)
      - [Check x2().](#test-2-check-x2)
@@ -19,22 +18,11 @@
    - [test 9:](#test-9)
      - [Check sum strings.](#test-9-check-sum-strings)
    - [test 10:](#test-10)
-     - [JavaScript has types: "number", "array", "object", "function".](#test-10-javascript-has-types-number-array-object-function)
+     - [JavaScript has types: "number", "object", "function".](#test-10-javascript-has-types-number-object-function)
+   - [EventEmitter](#eventemitter)
+     - [Local EventEmitter.](#eventemitter-local-eventemitter)
 <a name=""></a>
  
-<a name="test-1"></a>
-# test 1:
-<a name="test-1-local-eventemitter"></a>
-## Local EventEmitter.
-async test.
-
-```js
-this.timeout(1001);
-			ee.on('ready', function() {
-				done();
-			});
-```
-
 <a name="test-1"></a>
 # test 1:
 <a name="test-1-check-sum"></a>
@@ -108,7 +96,7 @@ for(i = 0; i < 20000000; i++) {
 It will have property hw and hw - 'hello world':.
 
 ```js
-assert.equal('hello world', require('../index.js').hw);
+assert.equal('hello world', hw);
 ```
 
 <a name="test-8"></a>
@@ -118,9 +106,9 @@ assert.equal('hello world', require('../index.js').hw);
 It will have k with keys: a, b, c.
 
 ```js
-assert.equal('is a', require('../index.js').k.a);
-		assert.equal('is b', require('../index.js').k.c);
-		assert.equal('is c', require('../index.js').k.b);
+assert.equal('is a', k.a);
+		assert.equal('is b', k.c);
+		assert.equal('is c', k.b);
 ```
 
 <a name="test-9"></a>
@@ -130,19 +118,73 @@ assert.equal('is a', require('../index.js').k.a);
 It will sum 2 strings..
 
 ```js
-assert.equal('hello world', require('../index.js').sum_string('hello', 'world'));
+assert.equal('hello world', sum_string('hello', 'world'));
 ```
 
 <a name="test-10"></a>
 # test 10:
-<a name="test-10-javascript-has-types-number-array-object-function"></a>
-## JavaScript has types: "number", "array", "object", "function".
+<a name="test-10-javascript-has-types-number-object-function"></a>
+## JavaScript has types: "number", "object", "function".
 ....
 
 ```js
-var t = require('../index.js').types;
-		assert.equal('object', typeof t.b);
+assert.equal('object', typeof t.b);
 		assert.equal('function', typeof t.c);
 		assert.equal('number', typeof t.d);
+```
+
+<a name="eventemitter"></a>
+# EventEmitter
+<a name="eventemitter-local-eventemitter"></a>
+## Local EventEmitter.
+Async ready..
+
+```js
+this.timeout(1001);
+			ee.on('ready', function() {
+				x = 0;
+				done();
+			});
+			setTimeout(function() {
+				ee.emit('ready');
+			}, 100);
+```
+
+Inc: x += 2.
+
+```js
+this.timeout(1001);
+			ee.on('inc', function(i) {
+				x += i;
+				done();
+			});
+			setTimeout(function() {
+				ee.emit('inc', 2);
+			}, 300);
+```
+
+Dec: x -= 1.
+
+```js
+this.timeout(1001);
+			ee.on('dec', function(i) {
+				x -= i;
+				done();
+			});
+			setTimeout(function() {
+				ee.emit('dec', 1);
+			}, 400);
+```
+
+Check x === 1.
+
+```js
+ee.on('check', function() {
+				x.should.equal(1);
+				done();
+			});
+			setTimeout(function() {
+				ee.emit('check');
+			}, 500);
 ```
 
